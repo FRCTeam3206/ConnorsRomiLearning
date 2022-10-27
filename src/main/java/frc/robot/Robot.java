@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.robot.RomiDrivetrain;
+import edu.wpi.first.wpilibj.Servo;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -27,9 +27,8 @@ public class Robot extends TimedRobot {
 
 
   // Vars for teleop
-  Joystick wasd = new Joystick(0);
-  double joyX = 0, joyY = 0;
-
+  Joystick joys = new Joystick(0);
+  Servo servs = new Servo(2);
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -93,7 +92,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // For some reason, the X and Y axis' are flipped. This unflips them
-    m_drivetrain.arcadeDrive(wasd.getY(), wasd.getX());
+    m_drivetrain.arcadeDrive(joys.getY(), joys.getX());
+
+    // Control servo using wasd
+    servs.set(joys.getY());
   }
 
   /** This function is called once when the robot is disabled. */
