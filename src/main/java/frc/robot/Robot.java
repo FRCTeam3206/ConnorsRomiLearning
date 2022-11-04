@@ -92,10 +92,12 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     // For some reason, the X and Y axis' are flipped. This unflips them
-    m_drivetrain.arcadeDrive(joys.getY(), joys.getX());
+    m_drivetrain.tankDrive(joys.getY(), joys.getX());
 
     // Control servo using wasd
     servs.set(joys.getY());
+
+    System.out.println(m_drivetrain.getRevolutions());
   }
 
   /** This function is called once when the robot is disabled. */

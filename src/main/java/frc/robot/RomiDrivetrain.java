@@ -45,6 +45,11 @@ public class RomiDrivetrain {
     m_rightEncoder.reset();
   }
 
+  // Return an array of size 2 which contains the left and right encoder values respectively
+  public double[] getRevolutions() {
+    return new double[]{m_leftEncoder.get(), m_rightEncoder.get()};
+  }
+
   public double getLeftDistanceInch() {
     return m_leftEncoder.getDistance();
   }
@@ -52,4 +57,10 @@ public class RomiDrivetrain {
   public double getRightDistanceInch() {
     return m_rightEncoder.getDistance();
   }
+
+  // Simple tank drive method
+  public void tankDrive(double leftMotorSpeed, double rightMotorSpeed) {
+    m_diffDrive.tankDrive(leftMotorSpeed, rightMotorSpeed);
+    return;
+  } 
 }
